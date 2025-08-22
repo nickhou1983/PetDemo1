@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宠物配置 - 宠物聚会</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="images/logo.png" alt="宠物聚会Logo" id="logo-placeholder">
+                <h1>宠物聚会</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="pet-config.html" class="active">宠物配置</a></li>
+                <li><a href="#">关于我们</a></li>
+                <li><a href="#">联系方式</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <button class="btn login-btn">登录</button>
+                <button class="btn signup-btn">注册</button>
+            </div>
+            <div class="language-selector">
+                <select id="language">
+                    <option value="zh">中文</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 宠物配置主要内容 -->
+    <main class="pet-config-main">
+        <section class="pet-config-header">
+            <div class="container">
+                <h1>宠物配置管理</h1>
+                <p>管理您的宠物信息，让其他宠物主人更好地了解您的毛孩子</p>
+            </div>
+        </section>
+
+        <section class="pet-config-content">
+            <div class="container">
+                <div class="pet-config-layout">
+                    <!-- 宠物列表 -->
+                    <div class="pet-list-section">
+                        <div class="section-header">
+                            <h2>我的宠物</h2>
+                            <button class="btn btn-primary add-pet-btn">
+                                <i class="fas fa-plus"></i> 添加宠物
+                            </button>
+                        </div>
+                        <div id="pet-list" class="pet-list">
+                            <!-- 宠物卡片将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+
+                    <!-- 宠物表单 -->
+                    <div class="pet-form-section">
+                        <div class="pet-form-container">
+                            <div class="form-header">
+                                <h3 id="form-title">添加新宠物</h3>
+                                <button class="close-form-btn" id="close-form">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            
+                            <form id="pet-form" class="pet-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="pet-name">宠物名称 *</label>
+                                        <input type="text" id="pet-name" name="petName" required>
+                                        <div class="error-message" id="pet-name-error"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pet-type">宠物类型 *</label>
+                                        <select id="pet-type" name="petType" required>
+                                            <option value="">请选择</option>
+                                            <option value="dog">狗</option>
+                                            <option value="cat">猫</option>
+                                            <option value="other">其他</option>
+                                        </select>
+                                        <div class="error-message" id="pet-type-error"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="pet-breed">品种</label>
+                                        <input type="text" id="pet-breed" name="petBreed">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pet-age">年龄</label>
+                                        <input type="number" id="pet-age" name="petAge" min="0" max="30">
+                                        <div class="error-message" id="pet-age-error"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="pet-gender">性别</label>
+                                        <select id="pet-gender" name="petGender">
+                                            <option value="">请选择</option>
+                                            <option value="male">雄性</option>
+                                            <option value="female">雌性</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pet-weight">体重 (kg)</label>
+                                        <input type="number" id="pet-weight" name="petWeight" min="0" max="100" step="0.1">
+                                        <div class="error-message" id="pet-weight-error"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="pet-photo">宠物照片</label>
+                                    <div class="photo-upload-container">
+                                        <input type="file" id="pet-photo" name="petPhoto" accept="image/*" style="display: none;">
+                                        <div class="photo-preview" id="photo-preview">
+                                            <div class="photo-placeholder">
+                                                <i class="fas fa-camera"></i>
+                                                <p>点击上传照片</p>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-secondary" id="upload-photo-btn">选择照片</button>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="pet-vaccination">疫苗接种记录</label>
+                                    <textarea id="pet-vaccination" name="petVaccination" rows="3" placeholder="请输入疫苗接种记录..."></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="pet-notes">特殊需求/备注</label>
+                                    <textarea id="pet-notes" name="petNotes" rows="3" placeholder="请输入特殊需求或备注信息..."></textarea>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-secondary cancel-btn" id="cancel-btn">取消</button>
+                                    <button type="submit" class="btn btn-primary save-btn" id="save-btn">保存</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 删除确认模态框 -->
+    <div id="delete-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>确认删除</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>您确定要删除这只宠物的信息吗？此操作无法撤销。</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary cancel-delete-btn">取消</button>
+                <button class="btn btn-danger confirm-delete-btn">确认删除</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 登录模态框 -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>登录</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <form id="login-form" class="auth-form">
+                <div class="form-group">
+                    <label for="login-email">邮箱</label>
+                    <input type="email" id="login-email" required>
+                    <div class="error-message" id="login-email-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">密码</label>
+                    <input type="password" id="login-password" required>
+                    <div class="error-message" id="login-password-error"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">登录</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 注册模态框 -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>注册</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <form id="signup-form" class="auth-form">
+                <div class="form-group">
+                    <label for="email">邮箱</label>
+                    <input type="email" id="email" required>
+                    <div class="error-message" id="email-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" required>
+                    <div class="error-message" id="password-error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">确认密码</label>
+                    <input type="password" id="confirm-password" required>
+                    <div class="error-message" id="confirm-password-error"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">注册</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/pet-config.js"></script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宠物配置 - 宠物聚会</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="images/logo.png" alt="宠物聚会Logo" id="logo-placeholder">
+                <h1>宠物聚会</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="pet-config.html" class="active">宠物配置</a></li>
+                <li><a href="#">关于我们</a></li>
+                <li><a href="#">联系方式</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <button class="btn login-btn">登录</button>
+                <button class="btn signup-btn">注册</button>
+            </div>
+            <div class="language-selector">
+                <select id="language">
+                    <option value="zh">中文</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 宠物配置页面内容 -->
+    <section class="pet-config-hero">
+        <div class="pet-config-header">
+            <h1>宠物配置管理</h1>
+            <p>管理你的宠物信息，让聚会更精彩</p>
+        </div>
+    </section>
+
+    <!-- 宠物列表和添加区域 -->
+    <section class="pet-management">
+        <div class="pet-management-container">
+            <div class="pet-actions">
+                <h2>我的宠物</h2>
+                <button class="btn add-pet-btn" id="add-pet-btn">
+                    <i class="fas fa-plus"></i>
+                    添加新宠物
+                </button>
+            </div>
+            
+            <!-- 宠物列表 -->
+            <div class="pets-list" id="pets-list">
+                <!-- 宠物卡片将通过JavaScript动态添加 -->
+            </div>
+            
+            <!-- 空状态 -->
+            <div class="empty-state" id="empty-state">
+                <div class="empty-icon">
+                    <i class="fas fa-paw"></i>
+                </div>
+                <h3>还没有添加宠物</h3>
+                <p>点击"添加新宠物"按钮开始添加你的毛孩子信息</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 添加/编辑宠物模态框 -->
+    <div class="modal" id="pet-modal">
+        <div class="modal-content pet-modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">添加新宠物</h2>
+            <form id="pet-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pet-name">宠物名称 <span class="required">*</span></label>
+                        <input type="text" id="pet-name" required>
+                        <div class="error-message" id="pet-name-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pet-type">宠物类型 <span class="required">*</span></label>
+                        <select id="pet-type" required>
+                            <option value="">请选择宠物类型</option>
+                            <option value="dog">狗</option>
+                            <option value="cat">猫</option>
+                            <option value="bird">鸟</option>
+                            <option value="rabbit">兔子</option>
+                            <option value="hamster">仓鼠</option>
+                            <option value="fish">鱼</option>
+                            <option value="other">其他</option>
+                        </select>
+                        <div class="error-message" id="pet-type-error"></div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pet-breed">品种</label>
+                        <input type="text" id="pet-breed" placeholder="例如：金毛寻回犬">
+                    </div>
+                    <div class="form-group">
+                        <label for="pet-age">年龄</label>
+                        <input type="number" id="pet-age" min="0" max="30" placeholder="岁">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pet-gender">性别</label>
+                        <select id="pet-gender">
+                            <option value="">请选择性别</option>
+                            <option value="male">公</option>
+                            <option value="female">母</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="pet-weight">体重 (kg)</label>
+                        <input type="number" id="pet-weight" min="0" step="0.1" placeholder="例如：25.5">
+                    </div>
+                </div>
+
+                <!-- 照片上传 -->
+                <div class="form-group photo-upload-group">
+                    <label for="pet-photo">宠物照片</label>
+                    <div class="photo-upload-area" id="photo-upload-area">
+                        <div class="upload-placeholder" id="upload-placeholder">
+                            <i class="fas fa-camera"></i>
+                            <span>点击上传照片</span>
+                        </div>
+                        <img id="photo-preview" class="photo-preview" style="display: none;">
+                        <input type="file" id="pet-photo" accept="image/*" style="display: none;">
+                    </div>
+                    <button type="button" class="btn-secondary" id="remove-photo" style="display: none;">
+                        <i class="fas fa-trash"></i>
+                        移除照片
+                    </button>
+                </div>
+
+                <!-- 疫苗接种记录 -->
+                <div class="form-group">
+                    <label for="vaccination-status">疫苗接种状态</label>
+                    <select id="vaccination-status">
+                        <option value="">请选择接种状态</option>
+                        <option value="up-to-date">疫苗齐全</option>
+                        <option value="partial">部分接种</option>
+                        <option value="overdue">疫苗过期</option>
+                        <option value="unknown">不清楚</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="vaccination-notes">疫苗记录备注</label>
+                    <textarea id="vaccination-notes" rows="3" placeholder="记录疫苗接种时间、类型等信息"></textarea>
+                </div>
+
+                <!-- 特殊需求 -->
+                <div class="form-group">
+                    <label for="special-needs">特殊需求/备注</label>
+                    <textarea id="special-needs" rows="3" placeholder="例如：过敏信息、行为特点、饮食禁忌等"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-btn">取消</button>
+                    <button type="submit" class="btn submit-btn" id="save-pet-btn">保存宠物信息</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 删除确认模态框 -->
+    <div class="modal" id="delete-modal">
+        <div class="modal-content delete-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="delete-content">
+                <div class="delete-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3>确认删除</h3>
+                <p>确定要删除这个宠物信息吗？此操作无法撤销。</p>
+                <div class="delete-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-delete">取消</button>
+                    <button type="button" class="btn btn-danger" id="confirm-delete">确认删除</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 登录和注册模态框（复用首页的） -->
+    <div class="modal" id="signup-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>创建账号</h2>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="email">电子邮件</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">确认密码</label>
+                    <input type="password" id="confirm-password" required>
+                </div>
+                <button type="submit" class="btn submit-btn">注册</button>
+                <div class="social-login">
+                    <p>或通过以下方式注册</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-weixin"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-qq"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-weibo"></i></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>登录账号</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">电子邮件</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">密码</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <div class="form-group remember-me">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">记住我</label>
+                    <a href="#" class="forgot-password">忘记密码？</a>
+                </div>
+                <button type="submit" class="btn submit-btn">登录</button>
+                <div class="social-login">
+                    <p>或通过以下方式登录</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-weixin"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-qq"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-weibo"></i></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="images/logo.png" alt="宠物聚会Logo" id="footer-logo-placeholder">
+                <h2>宠物聚会</h2>
+                <p>连接宠物主人，发现宠物友好地点</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>关于我们</h3>
+                    <ul>
+                        <li><a href="#">公司简介</a></li>
+                        <li><a href="#">团队成员</a></li>
+                        <li><a href="#">新闻动态</a></li>
+                        <li><a href="#">加入我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>帮助中心</h3>
+                    <ul>
+                        <li><a href="#">常见问题</a></li>
+                        <li><a href="#">使用指南</a></li>
+                        <li><a href="#">联系客服</a></li>
+                        <li><a href="#">投诉建议</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>法律信息</h3>
+                    <ul>
+                        <li><a href="#">用户协议</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                        <li><a href="#">Cookie政策</a></li>
+                        <li><a href="#">版权声明</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>关注我们</h3>
+                    <div class="social-media">
+                        <a href="#" class="social-link"><i class="fab fa-weixin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-weibo"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-qq"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    <p>客服热线：400-123-4567</p>
+                    <p>客服邮箱：help@petparty.com</p>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 宠物聚会 版权所有</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/pet-config.js"></script>
+</body>
+</html>

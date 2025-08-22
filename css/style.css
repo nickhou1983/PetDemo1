@@ -1001,3 +1001,502 @@ a:focus {
         color: var(--text-dark);
     }
 }
+
+/* 宠物配置页面样式 */
+
+/* 宠物配置页面头部 */
+.pet-config-hero {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--text-white);
+    padding: 150px 5% 80px;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.pet-config-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.pet-config-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* 宠物管理区域 */
+.pet-management {
+    padding: 80px 5%;
+    background-color: var(--bg-light);
+}
+
+.pet-management-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pet-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.pet-actions h2 {
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+.add-pet-btn {
+    background-color: var(--primary-color);
+    color: var(--text-white);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+}
+
+.add-pet-btn:hover {
+    background-color: #3a7eb0;
+}
+
+.add-pet-btn i {
+    font-size: 1.1rem;
+}
+
+/* 宠物列表 */
+.pets-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.pet-card {
+    background-color: var(--bg-white);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    position: relative;
+}
+
+.pet-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.pet-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.pet-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: var(--bg-light);
+    border: 3px solid var(--primary-color);
+}
+
+.pet-photo-placeholder {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-white);
+    font-size: 2rem;
+}
+
+.pet-basic-info h3 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.pet-type {
+    background-color: var(--primary-color);
+    color: var(--text-white);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.pet-details {
+    margin-bottom: 1.5rem;
+}
+
+.pet-detail-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.pet-detail-label {
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.pet-detail-value {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.vaccination-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.vaccination-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-white);
+    font-size: 0.8rem;
+}
+
+.vaccination-icon.up-to-date {
+    background-color: #4CAF50;
+}
+
+.vaccination-icon.partial {
+    background-color: var(--secondary-color);
+}
+
+.vaccination-icon.overdue {
+    background-color: var(--accent-color);
+}
+
+.vaccination-icon.unknown {
+    background-color: var(--text-light);
+}
+
+.pet-actions-buttons {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
+}
+
+.btn-secondary {
+    background-color: var(--text-light);
+    color: var(--text-white);
+}
+
+.btn-secondary:hover {
+    background-color: #555;
+}
+
+.btn-danger {
+    background-color: var(--accent-color);
+    color: var(--text-white);
+}
+
+.btn-danger:hover {
+    background-color: #e03e15;
+}
+
+/* 空状态 */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-light);
+}
+
+.empty-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+}
+
+.empty-icon i {
+    font-size: 4rem;
+    color: var(--text-white);
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.empty-state p {
+    font-size: 1.1rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* 宠物模态框样式 */
+.pet-modal-content {
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group.photo-upload-group {
+    grid-column: 1 / -1;
+}
+
+.photo-upload-area {
+    border: 2px dashed var(--border-light);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.photo-upload-area:hover {
+    border-color: var(--primary-color);
+    background-color: rgba(75, 156, 211, 0.05);
+}
+
+.photo-upload-area.drag-over {
+    border-color: var(--primary-color);
+    background-color: rgba(75, 156, 211, 0.1);
+}
+
+.upload-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-light);
+}
+
+.upload-placeholder i {
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+
+.upload-placeholder span {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.photo-preview {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: var(--bg-white);
+    transition: var(--transition);
+}
+
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(75, 156, 211, 0.1);
+}
+
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 80px;
+    transition: var(--transition);
+}
+
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(75, 156, 211, 0.1);
+}
+
+.required {
+    color: var(--accent-color);
+}
+
+.error-message {
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.error-message.show {
+    display: block;
+}
+
+.form-group.error input,
+.form-group.error select,
+.form-group.error textarea {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(252, 74, 26, 0.1);
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-light);
+}
+
+/* 删除确认模态框 */
+.delete-modal-content {
+    max-width: 400px;
+}
+
+.delete-content {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.delete-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.delete-icon i {
+    font-size: 2.5rem;
+    color: var(--text-white);
+}
+
+.delete-content h3 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.delete-content p {
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.delete-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* 响应式设计 - 宠物配置页面 */
+@media (max-width: 768px) {
+    .pet-config-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .pet-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .pet-actions h2 {
+        font-size: 2rem;
+    }
+    
+    .pets-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .pet-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .pet-actions-buttons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .pet-config-header h1 {
+        font-size: 2rem;
+    }
+    
+    .pet-config-header p {
+        font-size: 1rem;
+    }
+    
+    .pet-management {
+        padding: 40px 3%;
+    }
+    
+    .pet-actions h2 {
+        font-size: 1.8rem;
+    }
+    
+    .pet-card {
+        padding: 1.5rem;
+    }
+    
+    .pet-photo,
+    .pet-photo-placeholder {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .pet-modal-content {
+        width: 95%;
+        padding: 1.5rem;
+        margin: 10% auto;
+        max-height: 80vh;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .delete-actions {
+        flex-direction: column;
+    }
+}
